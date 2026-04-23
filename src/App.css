@@ -1,349 +1,382 @@
-@layer components {
-  .app-shell {
-    @apply min-h-screen bg-slate-50;
-  }
+.app-shell {
+  @apply min-h-screen bg-slate-50;
+}
 
-  .segmented-control {
-    @apply inline-grid grid-cols-4 gap-1.5 rounded-2xl border border-slate-300/70 bg-slate-50/95 p-1.5;
-  }
+.segmented-control {
+  @apply inline-grid grid-cols-4 gap-1.5 rounded-2xl border border-slate-300 p-1.5;
+  background-color: rgba(248, 250, 252, 0.95);
+}
 
-  .segmented-control button {
-    @apply min-h-10 rounded-xl bg-transparent text-sm font-bold text-slate-700 transition duration-150;
-  }
+.segmented-control button {
+  @apply min-h-10 rounded-xl bg-transparent text-sm font-bold text-slate-700 transition duration-150;
+}
 
-  .segmented-control button:hover {
-    @apply bg-blue-500/10;
-  }
+.segmented-control button:hover {
+  @apply bg-blue-500/10;
+}
 
-  .segmented-control button.is-active {
-    @apply -translate-y-px bg-gradient-to-br from-teal-700 to-blue-600 text-white shadow-lg shadow-blue-500/20;
-  }
+.segmented-control button.is-active {
+  @apply -translate-y-px bg-gradient-to-br from-teal-700 to-blue-600 text-white shadow-lg shadow-blue-500/20;
+}
 
+.stats-strip {
+  @apply m-0 grid grid-cols-3 gap-2;
+}
+
+.stats-strip div {
+  @apply rounded-2xl border border-slate-300 px-3 py-3;
+  background-color: rgba(248, 250, 252, 0.95);
+}
+
+.stats-strip dt {
+  @apply mb-1 text-[0.64rem] font-medium uppercase tracking-[0.08em] text-slate-500;
+}
+
+.stats-strip dd {
+  @apply m-0 text-sm font-bold leading-tight text-slate-900;
+}
+
+.canvas-panel {
+  @apply relative h-screen;
+}
+
+.canvas-panel__editor {
+  @apply h-full w-full;
+}
+
+.floating-stack {
+  @apply pointer-events-none absolute left-4 top-4 z-30 grid w-[min(520px,calc(100vw-32px))] justify-items-center gap-3;
+}
+
+.floating-intro {
+  @apply w-full rounded-3xl border border-slate-300/80 bg-white/85 px-5 py-4 shadow-xl backdrop-blur-xl;
+  box-shadow: 0 14px 34px rgba(15, 23, 42, 0.08);
+}
+
+.floating-intro__text {
+  @apply m-0 text-[15px] leading-7 text-slate-700;
+}
+
+.floating-intro__text a {
+  @apply ml-1 break-all font-semibold text-slate-900 underline decoration-slate-300 underline-offset-4 transition duration-150;
+}
+
+.floating-intro__text a:hover {
+  @apply text-blue-700 decoration-blue-300;
+}
+
+.floating-controls__panel {
+  @apply pointer-events-auto w-[min(420px,calc(100vw-32px))] rounded-3xl border border-slate-300 p-3 shadow-2xl shadow-slate-900/10 backdrop-blur-xl;
+  background-color: rgba(255, 255, 255, 0.92);
+}
+
+.floating-controls__label {
+  @apply mb-2 text-xs font-bold uppercase tracking-[0.08em] text-slate-600;
+}
+
+.product-card-shell {
+  @apply pointer-events-auto;
+}
+
+.product-counter-shell {
+  @apply pointer-events-none;
+}
+
+.product-count-badge {
+  @apply flex justify-end p-3.5;
+}
+
+.product-count-badge__pill {
+  @apply inline-flex items-center gap-2 rounded-full border border-blue-500/20 px-3 py-2 text-slate-900 shadow-lg shadow-blue-500/10;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.product-count-badge__pill span {
+  @apply text-[0.72rem] font-extrabold uppercase tracking-[0.08em] text-blue-600;
+}
+
+.product-count-badge__pill strong {
+  @apply text-[0.92rem] leading-none;
+}
+
+.product-card {
+  @apply relative grid overflow-hidden rounded-[28px] border border-slate-400/30 text-slate-900 shadow-2xl shadow-slate-900/10;
+  grid-template-rows: 216px minmax(0, 1fr);
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  box-shadow:
+    0 18px 45px rgba(15, 23, 42, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+.product-card__hero {
+  @apply relative px-4 pb-2 pt-4;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.7), transparent 35%),
+    linear-gradient(135deg, color-mix(in srgb, var(--card-accent) 70%, white) 0%, #0f172a 100%);
+}
+
+.product-card__heroGlow {
+  @apply absolute h-[190px] w-[190px];
+  inset: auto -12% -42% auto;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.44), transparent 68%);
+}
+
+.product-card__badgeRow,
+.product-card__footer,
+.product-card__priceRow,
+.product-card__swatches,
+.product-card__ratingRow,
+.product-card__heroActions,
+.product-card__ctaCluster,
+.product-card__quantity {
+  @apply flex items-center justify-between;
+}
+
+.product-card__badge,
+.product-card__sku,
+.product-card__metricPill,
+.product-card__specCell,
+.product-card__inventory,
+.product-card__heroLabel,
+.product-card__toggle,
+.product-card__carouselButton {
+  backdrop-filter: blur(10px);
+}
+
+.product-card__badge,
+.product-card__sku,
+.product-card__heroLabel {
+  @apply inline-flex items-center rounded-full px-3 py-1.5 text-[0.7rem] font-bold tracking-[0.04em];
+}
+
+.product-card__badge {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.product-card__sku,
+.product-card__heroLabel {
+  @apply text-white;
+  background-color: rgba(15, 23, 42, 0.15);
+}
+
+.product-card__heroFrame {
+  @apply relative mt-3 h-[138px] w-full overflow-hidden rounded-[22px];
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.14);
+}
+
+.product-card__heroImage {
+  @apply block h-full w-full object-cover;
+}
+
+.product-card__heroControls,
+.product-card__heroActions {
+  @apply absolute inset-x-[10px] flex;
+}
+
+.product-card__heroControls {
+  @apply top-1/2 -translate-y-1/2 justify-between;
+}
+
+.product-card__heroActions {
+  @apply right-[10px] top-[10px] justify-end gap-2;
+}
+
+.product-card__carouselButton,
+.product-card__toggle,
+.product-card__swatch,
+.product-card__quantity button,
+.product-card__carouselDots button {
+  @apply cursor-pointer border-0 transition duration-150;
+}
+
+.product-card__carouselButton,
+.product-card__toggle {
+  @apply min-h-8 rounded-full bg-slate-900/35 font-bold text-white;
+}
+
+.product-card__carouselButton {
+  @apply w-8 p-0 text-[1.3rem];
+}
+
+.product-card__toggle {
+  @apply px-3 text-[0.72rem];
+}
+
+.product-card__toggle.is-active {
+  @apply text-slate-900;
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+.product-card__carouselButton:hover,
+.product-card__toggle:hover,
+.product-card__quantity button:hover,
+.product-card__swatch:hover,
+.product-card__carouselDots button:hover,
+.product-card__footer button:hover {
+  @apply -translate-y-px;
+}
+
+.product-card__heroLabel {
+  @apply absolute bottom-[10px] left-[10px];
+}
+
+.product-card__carouselDots {
+  @apply flex justify-center gap-1.5 pt-2;
+}
+
+.product-card__carouselDots button {
+  @apply h-[0.58rem] w-[0.58rem] rounded-full bg-white/45 p-0;
+}
+
+.product-card__carouselDots button.is-active {
+  @apply w-[1.4rem] bg-white;
+}
+
+.product-card__body {
+  @apply grid gap-3 px-4 pb-4 pt-4;
+}
+
+.product-card__category {
+  @apply mb-1 text-[0.72rem] font-extrabold uppercase tracking-[0.12em];
+  color: var(--card-accent);
+}
+
+.product-card__heading h3 {
+  @apply m-0 text-xl tracking-[-0.04em];
+}
+
+.product-card__subtitle {
+  @apply mt-1 text-[0.9rem] text-slate-600;
+}
+
+.product-card__ratingRow {
+  @apply text-[0.82rem] text-slate-600;
+}
+
+.product-card__stars {
+  @apply inline-flex gap-px text-amber-500;
+}
+
+.product-card__metrics,
+.product-card__specGrid,
+.product-card__sparkline {
+  @apply grid;
+}
+
+.product-card__metrics {
+  @apply grid-cols-3 gap-2;
+}
+
+.product-card__metricPill,
+.product-card__specCell {
+  @apply grid min-h-[2.35rem] place-items-center rounded-2xl text-center text-xs font-bold;
+}
+
+.product-card__metricPill {
+  background: color-mix(in srgb, var(--card-accent) 10%, white);
+  color: color-mix(in srgb, var(--card-accent) 78%, black);
+}
+
+.product-card__specGrid {
+  @apply grid-cols-2 gap-2;
+}
+
+.product-card__specCell {
+  @apply bg-indigo-50 text-slate-700;
+}
+
+.product-card__swatches {
+  @apply gap-2;
+}
+
+.product-card__swatch {
+  @apply h-[1.15rem] w-[1.15rem] rounded-full p-0;
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.7);
+}
+
+.product-card__inventory {
+  @apply ml-auto rounded-full bg-emerald-500/10 px-3 py-1.5 text-[0.72rem] font-bold text-teal-700;
+}
+
+.product-card__sparkline {
+  @apply h-[4.2rem] grid-cols-6 items-end gap-1 rounded-2xl p-3;
+  background: linear-gradient(180deg, #eff6ff 0%, #dbeafe 100%);
+}
+
+.product-card__sparkBar {
+  @apply rounded-t-full;
+  background: linear-gradient(180deg, var(--card-accent) 0%, #0f172a 100%);
+}
+
+.product-card__priceRow strong {
+  @apply text-[1.3rem] tracking-[-0.05em];
+}
+
+.product-card__priceRow span,
+.product-card__shipping {
+  @apply text-[0.82rem] text-slate-500;
+}
+
+.product-card__priceRow span {
+  @apply line-through;
+}
+
+.product-card__shipping {
+  @apply mt-0.5;
+}
+
+.product-card__footer button {
+  @apply min-h-10 min-w-[92px] rounded-full px-4 font-bold text-white;
+  background: linear-gradient(135deg, #0f172a 0%, var(--card-accent) 100%);
+  box-shadow: 0 12px 28px color-mix(in srgb, var(--card-accent) 28%, transparent);
+}
+
+.product-card__ctaCluster {
+  @apply gap-2;
+}
+
+.product-card__quantity {
+  @apply min-h-10 gap-1 rounded-full bg-indigo-50 px-1.5;
+}
+
+.product-card__quantity button {
+  @apply h-[1.9rem] w-[1.9rem] rounded-full bg-white p-0 font-bold text-slate-900;
+}
+
+.product-card__quantity span {
+  @apply min-w-[1.2rem] text-center text-[0.9rem] font-bold;
+}
+
+.product-card__inspectButton {
+  @apply whitespace-nowrap;
+}
+
+@media (max-width: 980px) {
   .stats-strip {
-    @apply m-0 grid grid-cols-3 gap-2;
+    @apply grid-cols-3;
+  }
+}
+
+@media (max-width: 640px) {
+  .segmented-control,
+  .stats-strip {
+    @apply grid-cols-2;
   }
 
-  .stats-strip div {
-    @apply rounded-2xl border border-slate-300/60 bg-slate-50/95 px-3 py-3;
+  .floating-stack {
+    @apply left-3 right-3 top-3 w-auto gap-2;
   }
 
-  .stats-strip dt {
-    @apply mb-1 text-[0.64rem] font-medium uppercase tracking-[0.08em] text-slate-500;
+  .floating-intro {
+    @apply px-3 py-2.5;
   }
 
-  .stats-strip dd {
-    @apply m-0 text-sm font-bold leading-tight text-slate-900;
-  }
-
-  .canvas-panel {
-    @apply relative h-screen;
-  }
-
-  .canvas-panel__editor {
-    @apply h-full w-full;
-  }
-
-  .floating-controls {
-    @apply pointer-events-none absolute left-4 top-21 z-30 grid;
+  .floating-intro__text {
+    @apply text-[13px] leading-5;
   }
 
   .floating-controls__panel {
-    @apply pointer-events-auto w-[min(420px,calc(100vw-32px))] rounded-3xl border border-slate-300/70 bg-white/92 p-3 shadow-2xl shadow-slate-900/10 backdrop-blur-xl;
-  }
-
-  .floating-controls__label {
-    @apply mb-2 text-xs font-bold uppercase tracking-[0.08em] text-slate-600;
-  }
-
-  .product-card-shell {
-    @apply pointer-events-auto;
-  }
-
-  .product-counter-shell {
-    @apply pointer-events-none;
-  }
-
-  .product-count-badge {
-    @apply flex justify-end p-3.5;
-  }
-
-  .product-count-badge__pill {
-    @apply inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-white/90 px-3 py-2 text-slate-900 shadow-lg shadow-blue-500/10;
-  }
-
-  .product-count-badge__pill span {
-    @apply text-[0.72rem] font-extrabold uppercase tracking-[0.08em] text-blue-600;
-  }
-
-  .product-count-badge__pill strong {
-    @apply text-[0.92rem] leading-none;
-  }
-
-  .product-card {
-    @apply relative grid overflow-hidden rounded-[28px] border border-slate-400/30 text-slate-900 shadow-2xl shadow-slate-900/10;
-    grid-template-rows: 216px minmax(0, 1fr);
-    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
-    box-shadow:
-      0 18px 45px rgba(15, 23, 42, 0.14),
-      inset 0 1px 0 rgba(255, 255, 255, 0.7);
-  }
-
-  .product-card__hero {
-    @apply relative px-4 pb-2 pt-4;
-    background:
-      radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.7), transparent 35%),
-      linear-gradient(135deg, color-mix(in srgb, var(--card-accent) 70%, white) 0%, #0f172a 100%);
-  }
-
-  .product-card__heroGlow {
-    @apply absolute h-[190px] w-[190px];
-    inset: auto -12% -42% auto;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.44), transparent 68%);
-  }
-
-  .product-card__badgeRow,
-  .product-card__footer,
-  .product-card__priceRow,
-  .product-card__swatches,
-  .product-card__ratingRow,
-  .product-card__heroActions,
-  .product-card__ctaCluster,
-  .product-card__quantity {
-    @apply flex items-center justify-between;
-  }
-
-  .product-card__badge,
-  .product-card__sku,
-  .product-card__metricPill,
-  .product-card__specCell,
-  .product-card__inventory,
-  .product-card__heroLabel,
-  .product-card__toggle,
-  .product-card__carouselButton {
-    backdrop-filter: blur(10px);
-  }
-
-  .product-card__badge,
-  .product-card__sku,
-  .product-card__heroLabel {
-    @apply inline-flex items-center rounded-full px-3 py-1.5 text-[0.7rem] font-bold tracking-[0.04em];
-  }
-
-  .product-card__badge {
-    @apply bg-white/90;
-  }
-
-  .product-card__sku,
-  .product-card__heroLabel {
-    @apply bg-slate-900/15 text-white/95;
-  }
-
-  .product-card__heroFrame {
-    @apply relative mt-3 h-[138px] w-full overflow-hidden rounded-[22px];
-    background: rgba(255, 255, 255, 0.12);
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.14);
-  }
-
-  .product-card__heroImage {
-    @apply block h-full w-full object-cover;
-  }
-
-  .product-card__heroControls,
-  .product-card__heroActions {
-    @apply absolute inset-x-[10px] flex;
-  }
-
-  .product-card__heroControls {
-    @apply top-1/2 -translate-y-1/2 justify-between;
-  }
-
-  .product-card__heroActions {
-    @apply right-[10px] top-[10px] justify-end gap-2;
-  }
-
-  .product-card__carouselButton,
-  .product-card__toggle,
-  .product-card__swatch,
-  .product-card__quantity button,
-  .product-card__carouselDots button {
-    @apply cursor-pointer border-0 transition duration-150;
-  }
-
-  .product-card__carouselButton,
-  .product-card__toggle {
-    @apply min-h-8 rounded-full bg-slate-900/35 font-bold text-white;
-  }
-
-  .product-card__carouselButton {
-    @apply w-8 p-0 text-[1.3rem];
-  }
-
-  .product-card__toggle {
-    @apply px-3 text-[0.72rem];
-  }
-
-  .product-card__toggle.is-active {
-    @apply bg-white/95 text-slate-900;
-  }
-
-  .product-card__carouselButton:hover,
-  .product-card__toggle:hover,
-  .product-card__quantity button:hover,
-  .product-card__swatch:hover,
-  .product-card__carouselDots button:hover,
-  .product-card__footer button:hover {
-    @apply -translate-y-px;
-  }
-
-  .product-card__heroLabel {
-    @apply absolute bottom-[10px] left-[10px];
-  }
-
-  .product-card__carouselDots {
-    @apply flex justify-center gap-1.5 pt-2;
-  }
-
-  .product-card__carouselDots button {
-    @apply h-[0.58rem] w-[0.58rem] rounded-full bg-white/45 p-0;
-  }
-
-  .product-card__carouselDots button.is-active {
-    @apply w-[1.4rem] bg-white;
-  }
-
-  .product-card__body {
-    @apply grid gap-3 px-4 pb-4 pt-4;
-  }
-
-  .product-card__category {
-    @apply mb-1 text-[0.72rem] font-extrabold uppercase tracking-[0.12em];
-    color: var(--card-accent);
-  }
-
-  .product-card__heading h3 {
-    @apply m-0 text-xl tracking-[-0.04em];
-  }
-
-  .product-card__subtitle {
-    @apply mt-1 text-[0.9rem] text-slate-600;
-  }
-
-  .product-card__ratingRow {
-    @apply text-[0.82rem] text-slate-600;
-  }
-
-  .product-card__stars {
-    @apply inline-flex gap-px text-amber-500;
-  }
-
-  .product-card__metrics,
-  .product-card__specGrid,
-  .product-card__sparkline {
-    @apply grid;
-  }
-
-  .product-card__metrics {
-    @apply grid-cols-3 gap-2;
-  }
-
-  .product-card__metricPill,
-  .product-card__specCell {
-    @apply grid min-h-[2.35rem] place-items-center rounded-2xl text-center text-xs font-bold;
-  }
-
-  .product-card__metricPill {
-    background: color-mix(in srgb, var(--card-accent) 10%, white);
-    color: color-mix(in srgb, var(--card-accent) 78%, black);
-  }
-
-  .product-card__specGrid {
-    @apply grid-cols-2 gap-2;
-  }
-
-  .product-card__specCell {
-    @apply bg-indigo-50 text-slate-700;
-  }
-
-  .product-card__swatches {
-    @apply gap-2;
-  }
-
-  .product-card__swatch {
-    @apply h-[1.15rem] w-[1.15rem] rounded-full p-0;
-    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.7);
-  }
-
-  .product-card__inventory {
-    @apply ml-auto rounded-full bg-emerald-500/10 px-3 py-1.5 text-[0.72rem] font-bold text-teal-700;
-  }
-
-  .product-card__sparkline {
-    @apply h-[4.2rem] grid-cols-6 items-end gap-1 rounded-2xl p-3;
-    background: linear-gradient(180deg, #eff6ff 0%, #dbeafe 100%);
-  }
-
-  .product-card__sparkBar {
-    @apply rounded-t-full;
-    background: linear-gradient(180deg, var(--card-accent) 0%, #0f172a 100%);
-  }
-
-  .product-card__priceRow strong {
-    @apply text-[1.3rem] tracking-[-0.05em];
-  }
-
-  .product-card__priceRow span,
-  .product-card__shipping {
-    @apply text-[0.82rem] text-slate-500;
-  }
-
-  .product-card__priceRow span {
-    @apply line-through;
-  }
-
-  .product-card__shipping {
-    @apply mt-0.5;
-  }
-
-  .product-card__footer button {
-    @apply min-h-10 min-w-[92px] rounded-full px-4 font-bold text-white;
-    background: linear-gradient(135deg, #0f172a 0%, var(--card-accent) 100%);
-    box-shadow: 0 12px 28px color-mix(in srgb, var(--card-accent) 28%, transparent);
-  }
-
-  .product-card__ctaCluster {
-    @apply gap-2;
-  }
-
-  .product-card__quantity {
-    @apply min-h-10 gap-1 rounded-full bg-indigo-50 px-1.5;
-  }
-
-  .product-card__quantity button {
-    @apply h-[1.9rem] w-[1.9rem] rounded-full bg-white p-0 font-bold text-slate-900;
-  }
-
-  .product-card__quantity span {
-    @apply min-w-[1.2rem] text-center text-[0.9rem] font-bold;
-  }
-
-  .product-card__inspectButton {
-    @apply whitespace-nowrap;
-  }
-
-  @media (max-width: 980px) {
-    .stats-strip {
-      @apply grid-cols-3;
-    }
-  }
-
-  @media (max-width: 640px) {
-    .segmented-control,
-    .stats-strip {
-      @apply grid-cols-2;
-    }
-
-    .floating-controls {
-      @apply left-3 top-[88px];
-    }
+    @apply w-full;
   }
 }
