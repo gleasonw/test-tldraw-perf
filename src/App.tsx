@@ -589,9 +589,10 @@ function buildCounterFrame(cardCount: number) {
 
 function App() {
   const [cardCount, setCardCount] =
-    useState<(typeof CARD_COUNTS)[number]>(1000);
+    useState<(typeof CARD_COUNTS)[number]>(3000);
   const [status, setStatus] = useState("Initializing canvas…");
   const [lastRenderMs, setLastRenderMs] = useState<number | null>(null);
+  const [editorReady, setEditorReady] = useState(false);
   const editorRef = useRef<Editor | null>(null);
   const currentShapeIdsRef = useRef<TLShapeId[]>([]);
 
@@ -644,16 +645,17 @@ function App() {
     const elapsed = performance.now() - startedAt;
     setLastRenderMs(elapsed);
     setStatus(`Rendered ${cardCount.toLocaleString()} cards`);
-  }, [cardCount, counterFrame, productShapes]);
+  }, [cardCount, counterFrame, editorReady, productShapes]);
 
   const handleMount: TLOnMountHandler = (editor) => {
     editorRef.current = editor;
+    setEditorReady(true);
   };
 
   return (
     <main className="app-shell">
-      <section className="canvas-panel">
-        <div className="floating-stack">
+      <section className="header-panel">
+        <div className="header-stack">
           <aside className="floating-intro">
             <p className="floating-intro__text">
               A small test for how performant the current open-source tldraw is
@@ -708,7 +710,9 @@ function App() {
             </dl>
           </div>
         </div>
+      </section>
 
+      <section className="canvas-panel">
         <Tldraw
           autoFocus
           initialState="frame"
