@@ -17,7 +17,6 @@ import type {
   TLFrameShape,
   TLOnMountHandler,
   TLShapeId,
-  TLUiToolsContextType,
 } from "tldraw";
 import "./App.css";
 
@@ -591,8 +590,6 @@ function App() {
   const tldrawLicenseKey = import.meta.env.VITE_TLDRAW_LICENSE_KEY;
   const [cardCount, setCardCount] =
     useState<(typeof CARD_COUNTS)[number]>(3000);
-  const [status, setStatus] = useState("Initializing canvas…");
-  const [lastRenderMs, setLastRenderMs] = useState<number | null>(null);
   const [editorReady, setEditorReady] = useState(false);
   const editorRef = useRef<Editor | null>(null);
   const currentShapeIdsRef = useRef<TLShapeId[]>([]);
@@ -609,10 +606,7 @@ function App() {
     const editor = editorRef.current;
     if (!editor) return;
 
-    const startedAt = performance.now();
     const currentShapeIds = currentShapeIdsRef.current;
-
-    setStatus(`Rendering ${cardCount.toLocaleString()} cards…`);
 
     if (currentShapeIds.length > 0) {
       editor.deleteShapes(currentShapeIds);
@@ -629,10 +623,6 @@ function App() {
     editor.zoomToFit({ animation: { duration: 0 } });
 
     currentShapeIdsRef.current = productShapes.map((shape) => shape.id);
-
-    const elapsed = performance.now() - startedAt;
-    setLastRenderMs(elapsed);
-    setStatus(`Rendered ${cardCount.toLocaleString()} cards`);
   }, [cardCount, counterFrame, editorReady, productShapes]);
 
   const handleMount: TLOnMountHandler = (editor) => {
