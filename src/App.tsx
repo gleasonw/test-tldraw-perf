@@ -597,19 +597,6 @@ function App() {
   const editorRef = useRef<Editor | null>(null);
   const currentShapeIdsRef = useRef<TLShapeId[]>([]);
 
-  const uiOverrides = useMemo(
-    () => ({
-      tools: (
-        _editor: Editor,
-        tools: TLUiToolsContextType,
-      ): TLUiToolsContextType => {
-        const { frame, ...rest } = tools;
-        return frame ? { frame, ...rest } : tools;
-      },
-    }),
-    [],
-  );
-
   const productShapes = useMemo(
     () =>
       Array.from({ length: cardCount }, (_, index) => buildProductCard(index)),
@@ -657,23 +644,24 @@ function App() {
     <main className="app-shell">
       <section className="header-panel">
         <div className="header-stack">
-          <aside className="floating-intro">
-            <p className="floating-intro__text">
-              A small test for how performant the current open-source tldraw is
-              with many shapes. Frames can be created in the toolbar below. Code
-              lives here:
-              <a
-                href="https://github.com/gleasonw/test-tldraw-perf"
-                target="_blank"
-                rel="noreferrer"
-              >
-                https://github.com/gleasonw/test-tldraw-perf
-              </a>
-            </p>
-          </aside>
-
           <div className="floating-controls__panel" id="product-count-panel">
-            <p className="floating-controls__label">Add product cards</p>
+            <div className="floating-controls__header">
+              <div className="floating-controls__intro">
+                <p className="floating-intro__text">
+                  A small test for how performant the current open-source tldraw
+                  is with many shapes. Frames can be created in the toolbar
+                  below. Code lives here:
+                  <a
+                    href="https://github.com/gleasonw/test-tldraw-perf"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    https://github.com/gleasonw/test-tldraw-perf
+                  </a>
+                </p>
+              </div>
+            </div>
+
             <div
               className="segmented-control"
               role="group"
@@ -692,23 +680,6 @@ function App() {
                 </button>
               ))}
             </div>
-
-            <dl className="stats-strip">
-              <div>
-                <dt>Cards</dt>
-                <dd>{cardCount.toLocaleString()}</dd>
-              </div>
-              <div>
-                <dt>Populate</dt>
-                <dd>
-                  {lastRenderMs ? `${lastRenderMs.toFixed(0)} ms` : "Pending"}
-                </dd>
-              </div>
-              <div>
-                <dt>Status</dt>
-                <dd>{status}</dd>
-              </div>
-            </dl>
           </div>
         </div>
       </section>
@@ -716,10 +687,8 @@ function App() {
       <section className="canvas-panel">
         <Tldraw
           autoFocus
-          initialState="frame"
           licenseKey={tldrawLicenseKey}
           onMount={handleMount}
-          overrides={uiOverrides}
           shapeUtils={[ProductCardShapeUtil, ProductAwareFrameShapeUtil]}
           className="canvas-panel__editor"
         />

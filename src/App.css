@@ -7,16 +7,16 @@
 }
 
 .header-stack {
-  @apply mx-auto grid w-full max-w-[1040px] justify-items-center gap-6;
+  @apply mx-auto w-full max-w-[1040px];
 }
 
 .segmented-control {
-  @apply inline-grid grid-cols-4 gap-1.5 rounded-2xl border border-slate-300 p-1.5;
+  @apply inline-grid grid-cols-4 gap-1 rounded-2xl border border-slate-300 p-1;
   background-color: rgba(248, 250, 252, 0.95);
 }
 
 .segmented-control button {
-  @apply min-h-10 rounded-xl bg-transparent text-sm font-bold text-slate-700 transition duration-150;
+  @apply min-h-9 rounded-xl bg-transparent px-3 text-sm font-bold text-slate-700 transition duration-150;
 }
 
 .segmented-control button:hover {
@@ -32,7 +32,7 @@
 }
 
 .stats-strip div {
-  @apply rounded-2xl border border-slate-300 px-3 py-3;
+  @apply rounded-2xl border border-slate-300 px-3 py-2.5;
   background-color: rgba(248, 250, 252, 0.95);
 }
 
@@ -45,20 +45,15 @@
 }
 
 .canvas-panel {
-  @apply relative h-[calc(100vh-360px)] min-h-[520px] px-5 pb-5 pt-4;
+  @apply relative h-[calc(100vh-280px)] min-h-[520px] px-5 pb-5 pt-4;
 }
 
 .canvas-panel__editor {
   @apply mx-auto h-full w-full max-w-[1400px] overflow-hidden rounded-[28px] border border-slate-300/70 shadow-2xl shadow-slate-900/10;
 }
 
-.floating-intro {
-  @apply w-full rounded-3xl border border-slate-300/80 bg-white/85 px-5 py-4 shadow-xl backdrop-blur-xl;
-  box-shadow: 0 14px 34px rgba(15, 23, 42, 0.08);
-}
-
 .floating-intro__text {
-  @apply m-0 text-[15px] leading-7 text-slate-700;
+  @apply m-0 text-[14px] leading-6 text-slate-700;
 }
 
 .floating-intro__text a {
@@ -70,12 +65,34 @@
 }
 
 .floating-controls__panel {
-  @apply w-full max-w-[840px] rounded-3xl border border-slate-300 p-6 shadow-2xl shadow-slate-900/10 backdrop-blur-xl;
+  @apply w-full rounded-3xl border border-slate-300 px-6 py-5 shadow-2xl shadow-slate-900/10 backdrop-blur-xl;
   background-color: rgba(255, 255, 255, 0.92);
 }
 
+.floating-controls__header {
+  @apply mb-4 flex flex-col gap-3;
+}
+
+.floating-controls__intro {
+  @apply max-w-[780px];
+}
+
+.floating-controls__actions {
+  @apply flex items-center justify-between gap-3;
+}
+
 .floating-controls__label {
-  @apply mb-2 text-xs font-bold uppercase tracking-[0.08em] text-slate-600;
+  @apply m-0 text-xs font-bold uppercase tracking-[0.08em] text-slate-600;
+}
+
+@media (min-width: 900px) {
+  .floating-controls__header {
+    @apply flex-row items-start justify-between;
+  }
+
+  .floating-controls__actions {
+    @apply shrink-0;
+  }
 }
 
 .product-card-shell {
