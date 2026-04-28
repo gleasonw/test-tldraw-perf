@@ -588,6 +588,7 @@ function buildCounterFrame(cardCount: number) {
 }
 
 function App() {
+  const tldrawLicenseKey = import.meta.env.VITE_TLDRAW_LICENSE_KEY;
   const [cardCount, setCardCount] =
     useState<(typeof CARD_COUNTS)[number]>(3000);
   const [status, setStatus] = useState("Initializing canvas…");
@@ -716,6 +717,7 @@ function App() {
         <Tldraw
           autoFocus
           initialState="frame"
+          licenseKey={tldrawLicenseKey}
           onMount={handleMount}
           overrides={uiOverrides}
           shapeUtils={[ProductCardShapeUtil, ProductAwareFrameShapeUtil]}
